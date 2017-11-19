@@ -50,6 +50,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a  data-toggle="tab" href="#1a">Home</a></li>
             <li class=""><a  data-toggle="tab" href="#2a">Rainbow</a></li>
+            <li class=""><a  data-toggle="tab" href="#xmas1">Christmas Mode 1</a></li>
             <li class=""><a data-toggle="tab" href="#4a">Fade 2 Colors</a></li>
             <li class=""><a data-toggle="tab" href="#5a">Dance</a></li>
             <li class=""><a data-toggle="tab" href="#6a">Starry Night</a></li>
@@ -157,6 +158,10 @@
               >    -->         
       </div> <!-- ./tab-pane -->
 
+      <div class="tab-pane" id="xmas1">
+          <button class="btn btn-success" type="button" onclick="StartXmas1();"> Start Christmas Mode 1 </button>
+      </div> <!-- ./tab-pane -->      
+
       <div class="tab-pane" id="6a">
             <button class="btn btn-success" type="button" onclick="StartTwinkling();"> Start Starry Night </button>      
       </div> <!-- ./tab-pane --> 
@@ -174,6 +179,10 @@
 
     function StartDancing() {
       $Strip.BasicGET("dance");
+    }
+
+    function StartXmas1() {
+      $Strip.BasicGET("xmas1");
     }
 
     function StartTwinkling() {
