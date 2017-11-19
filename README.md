@@ -4,6 +4,20 @@ A basic app to control WS2812 LED strips with a raspberry pi.
 
 This consists of a Node app which serves a simple HTML page to manage the strip and includes libraries to control the strip.
 
+# Current Animations
+
+1) Rainbow
+  - Cycle through all colorsand pulse through strip.
+
+2) Fade 2 Colors
+  - Choose 2 colors and fade the strip between them.
+
+3) Dance
+  - Pulse colors through the strip is a dancing fashion.
+
+4) Starry Night
+  - All white LEDs that flicker at random.
+
 # Hardware 
 
 - WS2812 LED Light Strip
@@ -36,6 +50,7 @@ Tested working on:
 2) Install express NPM package
 3) Install body-parser NPM package
 4) Install rpi-ws281x-native NPM package
+5) Modify NUM_LEDS in app.js to match the number of LEDs you have connected
 5) Run app.js from source code in Node
 6) Access app.html to control the LED strip from the IP Address of your raspi
 
