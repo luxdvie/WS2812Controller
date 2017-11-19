@@ -2,6 +2,8 @@
 
 A basic app to control WS2812 LED strips with a raspberry pi. 
 
+This consists of a Node app which serves a simple HTML page to manage the strip and includes libraries to control the strip.
+
 # Hardware 
 
 - WS2812 LED Light Strip
