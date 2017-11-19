@@ -1,0 +1,1 @@
+cmd_Release/obj.target/rpi_ws281x.node := g++ -shared -pthread -rdynamic  -Wl,-soname=rpi_ws281x.node -o Release/obj.target/rpi_ws281x.node -Wl,--start-group Release/obj.target/rpi_ws281x/src/rpi-ws281x.o Release/obj.target/rpi_libws2811.a -Wl,--end-group 
