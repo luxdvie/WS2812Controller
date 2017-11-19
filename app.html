@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> LED Lighting Control </title>
+    <title> WS2812 Control </title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
     <!-- see http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag -->
@@ -27,8 +27,6 @@
 
     <script type="text/javascript" src="js/color.js"></script>
     <script type="text/javascript" src="slider/js/bootstrap-slider.min.js"></script>
-
-
 </head>
 
 <body>
@@ -91,9 +89,6 @@
               >
 
             </div>
-
-              
-
           </div>
         </div>
       </div> <!-- ./tab-pane -->
@@ -163,21 +158,7 @@
       </div> <!-- ./tab-pane -->
 
       <div class="tab-pane" id="6a">
-            <button class="btn btn-success" type="button" onclick="StartTwinkling();"> Start Starry Night </button>
-            <!--           <br><br>
-            Dance Speed:
-            <input
-                type="text"
-                id="dancespeed"
-                name="dancespeed"
-                data-provide="slider"
-                onchange="UpdateDanceSpeed();"
-                data-slider-min="1"
-                data-slider-max="100"
-                data-slider-step="1"
-                data-slider-value="10"
-                data-slider-tooltip="hide"
-              >    -->         
+            <button class="btn btn-success" type="button" onclick="StartTwinkling();"> Start Starry Night </button>      
       </div> <!-- ./tab-pane --> 
 
     </div> <!-- ./tab-content -->
@@ -192,7 +173,6 @@
     });
 
     function StartDancing() {
-      //nothing, yet
       $Strip.BasicGET("dance");
     }
 
@@ -225,14 +205,6 @@
       $Strip.BasicGET("stop");
     }
 
-    $(function() {
-      //for (var i = 0; i < 20; i++) {
-        // $('<div class="col-xs-6" style="margin-top:15px; margin-bottom:15px;"> <div>LED: ' + i +'  </div><div data-role="colorpicker" data-index="'+ i +'" class="col-xs-6"> </div> </div>').appendTo("#wrapper");  
-      //}
-      // prepareColors();
-      // loadProfiles();
-    });
-    
     function fade() {
       $Strip.BasicGET("fade");
     } 
@@ -305,70 +277,10 @@
         });
       });
     }
-    
-    var Profiles = [];
+  
     var CurrentArray = [];
     var CurrentArrayObjects = [];
 
-    function Profile() {
-      this.Name = "";
-      this.Array = "";
-    }
-
-    function loadProfileByName(name) {
-      loadProfiles();
-      for (var x in Profiles) {
-        if (!Profiles.hasOwnProperty(x)) continue;
-        try {
-          if (Profiles[x].Name == name) {
-            loadProfileByProfile(Profiles[x]);
-          }
-        } catch (err) {}
-      }
-    }
-
-    function loadProfileByProfile(prof) {
-      CurrentArray = prof.Array;
-      console.log("at loading the profile");
-      console.log(prof);
-
-
-    }
-
-    function loadProfiles() {
-      var f = localStorage.profiles;
-      if (typeof f === "undefined") {
-        localStorage.f = "";
-        Profiles = [];
-      } else {
-        if (localStorage.profiles === "") {
-          Profiles = [];
-        } else {
-          Profiles = JSON.parse(localStorage.profiles); 
-        }        
-      }
-
-      $("#profile-list").find("option").remove();
-
-      for (var x in Profiles) {
-        if (!Profiles.hasOwnProperty(x)) continue;
-        $("#profile-list").append("<option value='"+Profiles[x].Name+"'>"+Profiles[x].Name+"</option>")
-      }
-
-    }
-
-    function saveProfiles() {
-      localStorage.profiles = JSON.stringify(Profiles);
-    }
-
-    function saveProfile() {
-      loadProfiles();
-      var p = new Profile();
-      p.Name = prompt("Please enter a profile name.");
-      p.Array = CurrentArray;
-      Profiles.push(p);
-      saveProfiles();
-    }
 
   </script>
 

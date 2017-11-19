@@ -20,7 +20,7 @@ Connect your raspi according to those instructions.
 
 1) Connect DATA IN of your WS2812 LED strip to physical pin 12 of the Raspberry Pi. (GPIO 18).
 2) Connect GND (Physical pin 6) to the GND lead of your power supply. 
-3) Refer to this image for a layout of the raspi pins: https://www.element14.com/community/servlet/JiveServlet/previewBody/73950-102-11-339300/pi3_gpio.png
+- Refer to this image for a layout of the raspi pins: https://www.element14.com/community/servlet/JiveServlet/previewBody/73950-102-11-339300/pi3_gpio.png
 
 # Notes 
 
@@ -28,7 +28,7 @@ Tested working on:
   1) Raspberry Pi 3 Model B
   2) Raspberry Pi Zero W
 
-# Raspberry Pi Setup: 
+# Raspberry Pi Setup
 
 1) Install NodeJS
 2) Install express NPM package
