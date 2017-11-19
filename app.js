@@ -19,7 +19,7 @@
 		var color = 0x4b42f4;
 
 	/* Setup */
-		var MODES = { "INIT": 0, "FADE2": 1, "RAINBOW" : 2, "MANUAL" : 3, "CLEAR": 4, "DANCE": 5, "TWINKLE" : 6, "XMAS1" : 7 };
+		var MODES = { "INIT": 0, "FADE2": 1, "RAINBOW" : 2, "MANUAL" : 3, "CLEAR": 4, "DANCE": 5, "TWINKLE" : 6, "XMAS1" : 7, "XMASDANCE" : 8, "XMASITERATE" : 9 };
 
 
 /*******************************
@@ -50,7 +50,7 @@
 		*/
 		function StripStop() {
 			for (var i = 0; i < NUM_LEDS; i++) {
-				$app.Lights[i] = 0; // default purple color
+				$app.Lights[i] = 0; // no color
 			}
 			StripRender();
 			$app.Mode = MODES.CLEAR;
@@ -206,6 +206,15 @@
 			response.send("Going Xmas1");
 		});
 
+	/*******************************
+		Christmas Mode 2
+	*******************************/
+		app.get('/xmas2', function(request, response){
+			response.header("Access-Control-Allow-Origin", "*");
+			GoXmasIterate();
+			response.send("Going Xmas1");
+		});		
+
 /*******************************
 	Animation Groups
 *******************************/
@@ -221,32 +230,34 @@
 			Xmas1Tick();
 		}
 
+		function RandomXmasColor() {
+			var xmasLight = getRandomInt(1, 4);
+			var xmasColor = XmasRed;
+			switch (xmasLight) {
+				case 1: 
+					xmasColor = XmasRed;
+				break;
+				case 2: 
+					xmasColor = XmasGreen;
+				break;
+				case 3:
+					xmasColor = XmasBlue;
+				break;
+				case 4: 
+					xmasColor = XmasWhite;
+				break;
+			}	
+			return xmasColor;
+		}
+
 		var XmasRed = 0xff0000;
 		var XmasGreen = 0x00ff00;
 		var XmasBlue = 0x0000ff;
 		var XmasWhite = 0xffffff;
 		var Xmas1Speed = 750;
 		function Xmas1Tick() {	
-
-			for (var index=0; index < NUM_LEDS; index++) {
-				var xmasLight = getRandomInt(1, 4);
-				var xmasColor = XmasRed;
-				switch (xmasLight) {
-					case 1: 
-						xmasColor = XmasRed;
-					break;
-					case 2: 
-						xmasColor = XmasGreen;
-					break;
-					case 3:
-						xmasColor = XmasBlue;
-					break;
-					case 4: 
-						xmasColor = XmasWhite;
-					break;
-				}
-								
-				$app.Lights[index] =  xmasColor;
+			for (var index=0; index < NUM_LEDS; index++) {								
+				$app.Lights[index] =  RandomXmasColor();
 			}
 
 			StripRender();
@@ -260,6 +271,68 @@
 			}, Xmas1Speed);
 
 		}
+
+	/*******************************
+		Christmas Mode 2
+	*******************************/
+		/*
+		*	Christmas mode 2. Iterate R / G / B / W through the strip from top to bottom and bottom to top
+		*/
+		var DanceWidth = 15; 
+		var DanceArray = [];
+		var XmasIterateSpeed = 75;
+		var XmasIterateOffset = 0;
+		function GoXmasIterate() {
+			$app.Mode = MODES.XMASITERATE;
+			SetStripColor(0);
+			for (var d = 0; d < DanceWidth; d++) {
+				DanceArray[d] = RandomXmasColor();
+			}
+			XmasIterateTick();
+		}
+
+
+		function XmasIterateTick() {
+
+			SetStripColor(0);
+			var DanceArrayIndex = 0;
+			var x = 0 + XmasIterateOffset;
+			for (x; x < NUM_LEDS; x++ ) {
+				if ( DanceArrayIndex < DanceWidth ) {
+					$app.Lights[x] = DanceArray[DanceArrayIndex];
+				}
+				DanceArrayIndex++;
+			}
+			DanceArrayIndex = 0;
+			var y = NUM_LEDS - XmasIterateOffset;
+			for (y; y > 0; y-- ) {
+				if ( DanceArrayIndex < DanceWidth ) {
+					$app.Lights[y] = DanceArray[DanceArrayIndex];
+				}
+				DanceArrayIndex++;
+			}
+			
+			XmasIterateOffset++;
+			if (XmasIterateOffset > NUM_LEDS) {
+				XmasIterateOffset = 0;
+				for (var d = 0; d < DanceWidth; d++) {
+					DanceArray[d] = RandomXmasColor();
+				}
+			}	
+			
+			StripRender();
+
+			setTimeout(function () {
+				if ($app.Mode == MODES.XMASITERATE) {
+					XmasIterateTick();
+				} else {
+					XmasIterateSpeed = 100;
+				}
+			}, XmasIterateSpeed);
+
+		}
+
+
 
 	/*******************************
 		Fade 2 Colors
@@ -552,7 +625,7 @@
 *******************************/
 	
 	if ($app.Mode == MODES.INIT) {	
-		GoRainbow();
+		GoXmasIterate();
 	}
 
 	var server = app.listen(80, function() {
