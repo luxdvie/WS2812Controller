@@ -14,7 +14,7 @@
 
 	/* NeoPixel Setup */
 		var ws281x = require('rpi-ws281x-native');
-		var NUM_LEDS = 62, pixelData = new Uint32Array(NUM_LEDS);
+		var NUM_LEDS = 100, pixelData = new Uint32Array(NUM_LEDS);
 		ws281x.init(NUM_LEDS);
 		var color = 0x4b42f4;
 
@@ -214,7 +214,7 @@
 		Christmas Mode 1
 	*******************************/
 		/*
-		*	Christmas mode 1. Cycle R / G / B / W
+		*	Christmas mode 1. Randomly cycle R / G / B / W through the strip
 		*/
 		function GoXmas1() {
 			$app.Mode = MODES.XMAS1;
@@ -255,7 +255,7 @@
 				if ($app.Mode == MODES.XMAS1) {
 					Xmas1Tick();
 				} else {
-					Xmas1Speed = 1000 / 30;
+					Xmas1Speed = 750;
 				}
 			}, Xmas1Speed);
 
