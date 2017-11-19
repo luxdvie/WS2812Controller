@@ -7,7 +7,7 @@ This consists of a Node app which serves a simple HTML page to manage the strip 
 # Current Animations
 
 1) Rainbow
-  - Cycle through all colorsand pulse through strip.
+  - Cycle through all colors and pulse through strip.
 
 2) Fade 2 Colors
   - Choose 2 colors and fade the strip between them.
