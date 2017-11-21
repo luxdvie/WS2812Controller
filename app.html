@@ -187,7 +187,8 @@
     }
 
     function StartXmas1() {
-      $Strip.BasicGET("xmas1");
+      $Strip.POST("AnimationRequest", { lib: "xmas", method: "GoXmas1", args: { foo: "bar"} });
+      //$Strip.BasicGET("xmas1");
     }
 
     function StartXmas2() {
