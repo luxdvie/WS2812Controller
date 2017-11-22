@@ -68,7 +68,7 @@ function xmas() {
 		var x = 0 + XmasIterateOffset;
 		for (x; x < strip.NUM_LEDS; x++) {
 			if (DanceArrayIndex < DanceWidth) {
-				$app.Lights[x] = DanceArray[DanceArrayIndex];
+				strip.Lights[x] = DanceArray[DanceArrayIndex];
 			}
 			DanceArrayIndex++;
 		}
@@ -76,7 +76,7 @@ function xmas() {
 		var y = strip.NUM_LEDS - XmasIterateOffset;
 		for (y; y > 0; y--) {
 			if (DanceArrayIndex < DanceWidth) {
-				$app.Lights[y] = DanceArray[DanceArrayIndex];
+				strip.Lights[y] = DanceArray[DanceArrayIndex];
 			}
 			DanceArrayIndex++;
 		}

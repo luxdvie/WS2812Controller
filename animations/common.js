@@ -43,9 +43,22 @@ function common() {
         return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
     };
 
+    /*
+    *   Returns a random integer between min (inclusive) and max (inclusive)
+    */
     this.getRandomInt = function(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+    };
+
+    this.rgbToHex = function(r, g, b) {
+        return parseInt("0x" + this.componentToHex(r) + this.componentToHex(g) + this.componentToHex(b));
+    };
+
+    this.componentToHex  = function(c) {
+        var hex = c.toString(16);
+        return hex.length == 1 ? "0" + hex : hex;
+    };
+
 
 }
 

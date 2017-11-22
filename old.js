@@ -1,12 +1,3 @@
-
-/*******************************
-    Home
-*******************************/
-app.get('/', function (req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.sendFile(path.join(__dirname + '/app.html'));
-});
-
 /*******************************
     Rainbow
 *******************************/
@@ -64,45 +55,10 @@ app.get("/twinkle", function (req, res) {
     if ($app.Mode != MODES.TWINKLE) GoTwinkle();
 });
 
-/*******************************
-    Fade 2 Colors
-*******************************/
-app.post('/fade2colors', function (request, response) {
-    response.header("Access-Control-Allow-Origin", "*");
-    if (request && request.body && request.body.color1 && request.body.color2) {
-
-        var col1 = request.body.color1;
-        var col2 = request.body.color2;
-        GoFade2Colors(col1, col2);
-    }
-    response.send("fade2colors rsp");
-});
-
-app.post('/fadespeed', function (request, response) {
-    response.header("Access-Control-Allow-Origin", "*");
-    if (request && request.body && request.body.speed) {
-
-        var val = parseInt(request.body.speed);
-        var mappedVal = map_range(val, 0, 100, 10, 1);
-        if (typeof mappedVal === "number") {
-            FadeSpeed = mappedVal;
-        } else {
-            FadeSpeed = 1000 / 30;
-        }
-    }
-    response.send("fadespeed rsp: " + FadeSpeed);
-});
 
 
+app.post('/fadespeed', function (request, response) { });
 
-/*******************************
-    Christmas Modes
-*******************************/
-app.get('/xmas1', function (request, response) {
-    response.header("Access-Control-Allow-Origin", "*");
-    CurrentMode = xmas.ChooseNewMode($strip, "xmas1");
-    response.send("Going Xmas1");
-});
 
 app.get('/xmas2', function (request, response) {
     response.header("Access-Control-Allow-Origin", "*");
@@ -120,101 +76,6 @@ app.get("/stop", function (req, res) {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*******************************
-    Fade 2 Colors
-*******************************/
-var Fade2Color1;
-var Fade2Color2;
-var CurrentFadeColor;
-var Brightness = 255;
-var FadingDown = true;
-var FadeSpeed = 10;
-function GoFade2Colors(col1, col2) {
-    Fade2Color1 = parseInt("0x" + col1);
-    Fade2Color2 = parseInt("0x" + col2);
-    CurrentFadeColor = Fade2Color1;
-    SetStripColor(CurrentFadeColor);
-    if ($app.Mode != MODES.FADE2) {
-        $app.Mode = MODES.FADE2;
-        FadeTick();
-    }
-    $app.Mode = MODES.FADE2;
-
-}
-
-function FadeTick() {
-    if ($app.Mode != MODES.FADE2) {
-        ws281x.setBrightness(255);
-        return;
-    }
-
-    if (FadingDown) {
-        // go down
-        if (Brightness <= 50) {
-            FadingDown = false;
-            if (CurrentFadeColor == Fade2Color1) {
-                CurrentFadeColor = Fade2Color2;
-            } else {
-                CurrentFadeColor = Fade2Color1;
-            }
-            SetStripColor(CurrentFadeColor);
-        } else {
-            // fade down
-            ws281x.setBrightness(Brightness);
-            Brightness--;
-        }
-    } else {
-        // go up
-        if (Brightness > 254) {
-            FadingDown = true;
-
-        } else {
-            // fade down
-            ws281x.setBrightness(Brightness);
-            Brightness++;
-        }
-    }
-    setTimeout(function () {
-        if ($app.Mode == MODES.FADE2) {
-            FadeTick();
-        } else {
-            FadeSpeed = 1000 / 30;
-            ws281x.setBrightness(255);
-        }
-    }, FadeSpeed);
-
-}
 
 /*******************************
     Dance
@@ -283,25 +144,6 @@ function IsDancing() {
     return $app.Mode == MODES.DANCE;
 }
 
-function Wheel(WheelPos) {
-    if (WheelPos < 85) {
-        return rgbToHex(WheelPos * 3, 255 - WheelPos * 3, 0);
-    } else if (WheelPos < 170) {
-        WheelPos -= 85;
-        return rgbToHex(255 - WheelPos * 3, 0, WheelPos * 3);
-    } else {
-        WheelPos -= 170;
-        return rgbToHex(0, WheelPos * 3, 255 - WheelPos * 3);
-    }
-}
-
-function rgbToHex(r, g, b) {
-    return parseInt("0x" + componentToHex(r) + componentToHex(g) + componentToHex(b));
-}
-function componentToHex(c) {
-    var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
-}
 
 
 /*******************************
@@ -368,9 +210,6 @@ function TwinkleTick() {
 
 }
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 /*******************************
     Rainbow
@@ -400,26 +239,3 @@ function RainbowTick() {
         }
     }, RainbowSpeed);
 }
-
-
-/*******************************
-	Common
-*******************************/
-
-function ChooseNextMode() {
-
-    switch ($app.Mode) {
-
-
-        case MODES.RAINBOW:
-            GoRainbow();
-            break;
-    }
-
-
-}
-
-
-/*******************************
-	RUN
-*******************************/

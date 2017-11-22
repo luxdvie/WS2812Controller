@@ -18,6 +18,7 @@
 		*	Animation Libraries
 		*/
 		var xmas = require("./animations/xmas.js");
+		var fade = require("./animations/fade.js");
 
 
 /*******************************
@@ -73,6 +74,9 @@
 		{
 			case "xmas":
 				lib = xmas;
+			break;
+			case "fade":
+				lib = fade;
 			break;
 
 		}

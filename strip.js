@@ -27,6 +27,13 @@ function strip() {
     };
 
     /*
+    *   Assign the brightness of the whole strip.
+    */
+    this.SetBrightness = function (brightness) {
+        // ws281x.setBrightness(brightness);
+    };
+
+    /*
     *   Set a single color for all LEDs
     */
     this.SetStripColor = function (color) {
