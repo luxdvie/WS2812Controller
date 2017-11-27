@@ -40,7 +40,7 @@ function strip() {
         for (var i = 0; i < NUM_LEDS; i++) {
             this.Lights[i] = color;
         }
-        strip.Render();
+        this.Render();
     };
 
     this.Render = function () {

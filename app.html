@@ -53,8 +53,8 @@
             <li class=""><a  data-toggle="tab" href="#xmas1">Christmas Mode 1</a></li>
             <li class=""><a  data-toggle="tab" href="#xmas2">Christmas Iterate</a></li>
             <li class=""><a data-toggle="tab" href="#4a">Fade 2 Colors</a></li>
-            <li class=""><a data-toggle="tab" href="#5a">Dance</a></li>
-            <li class=""><a data-toggle="tab" href="#6a">Starry Night</a></li>
+            <!-- <li class=""><a data-toggle="tab" href="#5a">Dance</a></li> -->
+            <!-- <li class=""><a data-toggle="tab" href="#6a">Starry Night</a></li> -->
             <li class=""><a data-toggle="tab" href="#3a">Stop</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -72,24 +72,10 @@
         <div class="clearfix">&nbsp;</div>
         <div class="row"> 
           <div class="col-xs-12">
-            <button class="btn btn-danger" onclick="Rainbow();"> Start Rainbow </button>
+            <button class="btn btn-danger" onclick="StartRainbow();"> Start Rainbow </button>
 
             <div class="col-xs-12">
-              <br><br>
-              Speed:
-              <input
-                type="text"
-                id="rainbowspeed"
-                name="rainbowspeed"
-                data-provide="slider"
-                onchange="UpdateRainbowSpeed();"
-                data-slider-min="1"
-                data-slider-max="100"
-                data-slider-step="1"
-                data-slider-value="10"
-                data-slider-tooltip="hide"
-              >
-
+              <br><br> Speed <input type="text" id="rainbowspeed" name="rainbowspeed" data-provide="slider" onchange="UpdateRainbowSpeed();" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="10" data-slider-tooltip="hide" >
             </div>
           </div>
         </div>
@@ -123,40 +109,13 @@
           <br><br>
           <div style="width:100%;text-align:center;">
             <button class="btn btn-success" type="button" onclick="Start2Fade();"> Apply </button>
-          </div>
-          <br><br>
-            Fade Speed:
-            <input
-                type="text"
-                id="fadespeed"
-                name="rainbowspeed"
-                data-provide="slider"
-                onchange="UpdateFadeSpeed();"
-                data-slider-min="1"
-                data-slider-max="100"
-                data-slider-step="1"
-                data-slider-value="10"
-                data-slider-tooltip="hide"
-              >
+          </div> 
+          <br><br> Fade Speed: <input type="text" id="fadespeed" name="rainbowspeed" data-provide="slider" onchange="UpdateFadeSpeed();" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="10" data-slider-tooltip="hide" >
 
       </div> <!-- ./tab-pane -->
 
       <div class="tab-pane" id="5a">
             <button class="btn btn-success" type="button" onclick="StartDancing();"> Start Dancing </button>
-            <!--           <br><br>
-            Dance Speed:
-            <input
-                type="text"
-                id="dancespeed"
-                name="dancespeed"
-                data-provide="slider"
-                onchange="UpdateDanceSpeed();"
-                data-slider-min="1"
-                data-slider-max="100"
-                data-slider-step="1"
-                data-slider-value="10"
-                data-slider-tooltip="hide"
-              >    -->         
       </div> <!-- ./tab-pane -->
 
       <div class="tab-pane" id="xmas1">
@@ -178,10 +137,20 @@
   <script>
 
     /*******************************
+      control
+    *******************************/         
+      function Stop() {
+        AnimationRequest("control", "Stop", null);
+      }
+
+    /*******************************
       xmas
     *******************************/
       function StartXmas1() {
         AnimationRequest("xmas", "GoXmas1", null);
+      }
+      function StartXmas2() {
+          AnimationRequest("xmas", "GoXmasIterate", null);
       }
 
     /*******************************
@@ -201,6 +170,20 @@
         AnimationRequest("fade", "FadeSpeed", args);
       }
 
+
+    /*******************************
+      rainbow
+    *******************************/
+      function StartRainbow() {
+        AnimationRequest("rainbow", "GoRainbow", null);
+      }
+      function UpdateRainbowSpeed() {
+        var args = {
+          speed: $("#rainbowspeed").val()
+        };
+        AnimationRequest("rainbow", "RainbowSpeed", args);
+      }
+
     /*******************************
       common
     *******************************/
@@ -217,35 +200,16 @@
     /*******************************
       deprecated
     *******************************/
-      function StartXmas2() {
-        $Strip.BasicGET("xmas2");
-      }
-
       function StartDancing() {
         $Strip.BasicGET("dance");
       }
-
 
       function StartTwinkling() {
         $Strip.BasicGET("twinkle");
       }
 
-      function Rainbow() {
-        $Strip.BasicGET("rainbow");
-      }
-
-
       function UpdateDanceSpeed() {
        $Strip.POST( "dancespeed", { speed: $("#dancespeed").val() } ); 
-      }
-
-      function UpdateRainbowSpeed() {
-        $Strip.POST( "rainbowspeed", { speed: $("#rainbowspeed").val() } );
-      }
-
-
-      function Stop() {
-        $Strip.BasicGET("stop");
       }
 
       function fade() {

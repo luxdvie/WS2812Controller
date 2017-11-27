@@ -19,6 +19,7 @@ function xmas() {
 	this.GoXmas1 = function(args, strip ) {
 		strip.Mode = name+"GoXmas1";
 		this.Xmas1Tick(strip);
+		console.log("Starting GoXmas1");
 		return "Going XMAS 1";
 	};
 
@@ -52,18 +53,21 @@ function xmas() {
 
 	this.GoXmasIterate = function( args, strip ) {
 		strip.Mode = name+"GoXmasIterate";
-		XmasIterateSetup();
-		XmasIterateTick(strip);
+		console.log("Starting GoXmasIterate");
+		this.XmasIterateSetup();
+		this.XmasIterateTick(strip);
 	};
 
 	this.XmasIterateSetup = function( ) {
 		for (var d = 0; d < DanceWidth; d++) {
-			DanceArray[d] = RandomXmasColor();
+			DanceArray[d] = common.RandomXmasColor();
 		}
 	};
 
 	this.XmasIterateTick = function(strip) {
-		strip.SetColor(0);
+		var _this = this;
+
+		strip.SetStripColor(0);
 		var DanceArrayIndex = 0;
 		var x = 0 + XmasIterateOffset;
 		for (x; x < strip.NUM_LEDS; x++) {
@@ -93,7 +97,7 @@ function xmas() {
 
 		setTimeout(function () {
 			if (strip.Mode == name+"GoXmasIterate") {
-				XmasIterateTick(strip);
+				_this.XmasIterateTick(strip);
 			} else {
 				XmasIterateSpeed = 100;
 			}

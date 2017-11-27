@@ -211,31 +211,3 @@ function TwinkleTick() {
 }
 
 
-/*******************************
-    Rainbow
-*******************************/
-
-function GoRainbow() {
-    $app.Mode = MODES.RAINBOW;
-    RainbowTick();
-}
-
-var RainbowOffset = 0;
-var RainbowSpeed = 1000 / 30;
-function RainbowTick() {
-    for (var i = 0; i < NUM_LEDS; i++) {
-        pixelData[i] = colorwheel((RainbowOffset + i) % 256);
-    }
-
-    RainbowOffset = (RainbowOffset + 1) % 256;
-    ws281x.render(pixelData);
-
-    setTimeout(function () {
-        if ($app.Mode == MODES.RAINBOW) {
-            RainbowTick();
-        } else {
-            ChooseNextMode();
-            RainbowOffset = 0;
-        }
-    }, RainbowSpeed);
-}

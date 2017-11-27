@@ -12,6 +12,11 @@
 		app.use(bodyParser.json());
 		app.use(bodyParser.urlencoded({ extended: true }));
 
+
+		/* The port the server will listen on */
+		var HTTP_PORT = 80;
+
+		/* Global reference to the LED strip */
 		var strip = require("./strip.js");
 
 		/* 
@@ -19,6 +24,8 @@
 		*/
 		var xmas = require("./animations/xmas.js");
 		var fade = require("./animations/fade.js");
+		var rainbow = require("./animations/rainbow.js");
+		var control = require("./animations/control.js");
 
 
 /*******************************
@@ -78,7 +85,12 @@
 			case "fade":
 				lib = fade;
 			break;
-
+			case "rainbow":
+				lib = rainbow;
+			break;
+			case "control":
+				lib = control;
+			break;
 		}
 
 		return lib;
@@ -88,7 +100,7 @@
 	startup
 *******************************/
 
-	var server = app.listen(8080, function() {
+	var server = app.listen(HTTP_PORT, function() {
 		console.log('***************************');	
 		console.log(' WS2812 CONTROLLER STARTUP ');	
 		console.log('***************************');	

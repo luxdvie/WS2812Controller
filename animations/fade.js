@@ -18,7 +18,7 @@
 	function fader() {
 
 		this.GoFade2 = function(args, strip){
-
+			console.log("Starting Fade 2 Colors");
 			Fade2Color1 = parseInt("0x" + args.Color1);
 		    Fade2Color2 = parseInt("0x" + args.Color2);
 
@@ -26,12 +26,11 @@
 		    strip.SetStripColor(CurrentFadeColor);
 
 		    strip.Mode = "GoFade2";
-		    this.FadeTick();
+			this.FadeTick(strip);
 		};
 
 		this.FadeTick = function(strip) {
 			var _this = this;
-
 
 			if (strip.Mode != "GoFade2") {
 		        strip.SetBrightness(255);
@@ -80,7 +79,8 @@
 			var val = parseInt(args.speed);
 	        var mappedVal = common.map_range(val, 0, 100, 10, 1);
 	        if (typeof mappedVal === "number") {
-	            FadeSpeed = mappedVal;
+				FadeSpeed = mappedVal;
+				console.log("Updated fade speed: " + FadeSpeed);
 	        } else {
 	            FadeSpeed = 1000 / 30;
 	        }
