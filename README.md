@@ -1,8 +1,10 @@
 # WS2812 LED Strip Animations
 
-A basic app to control WS2812 LED strips with a raspberry pi. 
+A **very** basic app to control WS2812 LED strips with a raspberry pi. 
 
 This consists of a Node app which serves a simple HTML page to manage the strip and includes libraries to control the strip.
+
+You can use it for Neopixel christmas lights, or other simply DIY applications.
 
 # Current Animations
 
@@ -20,9 +22,10 @@ This consists of a Node app which serves a simple HTML page to manage the strip 
 
 # Hardware 
 
-- WS2812 LED Light Strip
+- WS2812 (Neopixel) LED Light Strip
 - Raspberry Pi 3 Model B or Raspberry Pi Zero
 - 5V 2A Power Supply
+- 1N4001 Diode (or equivalent)
 
 # Reading 
 
@@ -40,6 +43,10 @@ Connect your raspi according to those instructions.
 
 # Notes 
 
+I currently have included the node modules directory in the repo. **IMORTANT** This will only work on a Raspberry Pi.
+
+In future versions I will remove the node_modules folder and instruct users to download the (3) required packagaes. 
+
 Tested working on: 
   1) Raspberry Pi 3 Model B
   2) Raspberry Pi Zero W
@@ -47,13 +54,15 @@ Tested working on:
 # Raspberry Pi Setup
 
 1) Install NodeJS
-2) Install express NPM package
-3) Install body-parser NPM package
-4) Install rpi-ws281x-native NPM package
-5) Modify NUM_LEDS in strip.js to match the number of LEDs you have connected
-5) Run app.js from source code in Node
+2) Copy this repo to some location on your pi
+3) Modify NUM_LEDS in strip.js to match the number of LEDs you have connected
+    var NUM_LEDS = <YOUR_LEDS_HERE>;
+4) Modify HTTP_PORT in app.js to match the port you want to use to access your Pi
+    var HTTP_PORT = <YOUR_PORT_HERE>;
+5) Run app.js as root user or with sudo priveleges
+    node app.js
 6) Access app.html to control the LED strip from the IP Address of your raspi
-
+    http://<YOUR_IP_ADDRESS_HERE>:<YOUR_PORT_HERE>/
 
 # Questions? 
 
