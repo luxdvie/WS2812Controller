@@ -4,7 +4,7 @@ A **very** basic app to control WS2812 LED strips with a raspberry pi.
 
 This consists of a Node app which serves a simple HTML page to manage the strip and includes libraries to control the strip.
 
-You can use it for Neopixel christmas lights, or other simply DIY applications.
+You can use it for WS2812 (Neopixel) christmas lights, or other simple DIY applications.
 
 # Current Animations
 
