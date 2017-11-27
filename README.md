@@ -12,11 +12,11 @@ This consists of a Node app which serves a simple HTML page to manage the strip 
 2) Fade 2 Colors
   - Choose 2 colors and fade the strip between them.
 
-3) Dance
-  - Pulse colors through the strip is a dancing fashion.
+3) Christmas Mode 1
+  - Randomly cycle R / G / B / W through the strip.
 
-4) Starry Night
-  - All white LEDs that flicker at random.
+4) Christmas Mode 2
+  - Iterate an array of R / G / B / W LEDs through the strip from top to bottom and bottom to top
 
 # Hardware 
 
