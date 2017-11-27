@@ -1,28 +1,4 @@
 /*******************************
-    Rainbow
-*******************************/
-app.get("/rainbow", function (req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.send("Switching to rainbow.");
-    if ($app.Mode != MODES.RAINBOW) GoRainbow();
-});
-
-app.post('/rainbowspeed', function (request, response) {
-    response.header("Access-Control-Allow-Origin", "*");
-    if (request && request.body && request.body.speed) {
-
-        var val = parseInt(request.body.speed);
-        var mappedVal = map_range(val, 0, 100, 50, 5);
-        if (typeof mappedVal === "number") {
-            RainbowSpeed = mappedVal;
-        } else {
-            RainbowSpeed = 1000 / 30;
-        }
-    }
-    response.send("rainbowspeed rsp: " + RainbowSpeed);
-});
-
-/*******************************
     Dance
 *******************************/
 app.get("/dance", function (req, res) {
@@ -53,26 +29,6 @@ app.get("/twinkle", function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.send("Switching to twinkle.");
     if ($app.Mode != MODES.TWINKLE) GoTwinkle();
-});
-
-
-
-app.post('/fadespeed', function (request, response) { });
-
-
-app.get('/xmas2', function (request, response) {
-    response.header("Access-Control-Allow-Origin", "*");
-    CurrentMode = xmas.ChooseNewMode($strip, "xmas2");
-    response.send("Going Xmas1");
-});
-
-/*******************************
-    Clear
-*******************************/
-app.get("/stop", function (req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.send("Stopping the strip.");
-    StripStop();
 });
 
 
@@ -206,8 +162,4 @@ function TwinkleTick() {
             TwinkleTick();
         }
     }, TwinkleSpeed);
-
-
 }
-
-
