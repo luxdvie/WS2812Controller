@@ -1,35 +1,59 @@
 /*******************************
 	WS2812 LED Control
-		Austin Brown
-		austin@brogencreations.com
+		A tiny, primitive app for controlling WS2812 LEDs.
+
+	Austin Brown - 2017
+	http://luxdvie.github.io
+	austin@brogencreations.com
+
+	LICENSE
+	
+	The MIT License (MIT)
+
+	Copyright (c) 2017  Austin Brown
+
+	Permission is hereby granted, free of charge, to any person obtaining a copy
+	of this software and associated documentation files (the "Software"), to deal
+	in the Software without restriction, including without limitation the rights
+	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	copies of the Software, and to permit persons to whom the Software is
+	furnished to do so, subject to the following conditions:
+	The above copyright notice and this permission notice shall be included in
+	all copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+	THE SOFTWARE.
 *******************************/
-	/* Common Libraries */
-		var express = require('express');
-		var app = express();
-		var bodyParser = require('body-parser');
-		var path = require("path");
-		app.use(express.static(__dirname + '/public'));
-		app.use(bodyParser.json());
-		app.use(bodyParser.urlencoded({ extended: true }));
+	
+	/* Common Libraries & Setup */
+	var express = require('express');
+	var app = express();
+	var bodyParser = require('body-parser');
+	var path = require("path");
+	app.use(express.static(__dirname + '/public'));
+	app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded({ extended: true }));
 
+	/* The port the server will listen on */
+	var HTTP_PORT = 8080;
 
-		/* The port the server will listen on */
-		var HTTP_PORT = 8080;
+	/* Global reference to the LED strip */
+	var strip = require("./strip.js");
 
-		/* Global reference to the LED strip */
-		var strip = require("./strip.js");
-
-		/* 
-		*	Animation Libraries
-		*/
-		var xmas = require("./animations/xmas.js");
-		var fade = require("./animations/fade.js");
-		var rainbow = require("./animations/rainbow.js");
-		var control = require("./animations/control.js");
+	/*  Animation Libraries */
+	var xmas = require("./animations/xmas.js");
+	var fade = require("./animations/fade.js");
+	var rainbow = require("./animations/rainbow.js");
+	var control = require("./animations/control.js");
 
 
 /*******************************
-	Web Methods
+	web methods
 *******************************/
 
 	/*
