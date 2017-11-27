@@ -18,22 +18,23 @@ You can use it for WS2812 (Neopixel) christmas lights, or other simple DIY appli
   - Randomly cycle R / G / B / W through the strip.
 
 4) Christmas Mode 2
-  - Iterate an array of R / G / B / W LEDs through the strip from top to bottom and bottom to top
+  - Iterate a segment of R / G / B / W LEDs through the strip from top to bottom and bottom to top
 
-# Hardware 
-
-- WS2812 (Neopixel) LED Light Strip
-- Raspberry Pi 3 Model B or Raspberry Pi Zero
-- 5V 2A Power Supply
-- 1N4001 Diode (or equivalent)
-
-# Reading 
+# Important Reading 
 
 I found this NPM package : https://www.npmjs.com/package/rpi-ws281x-native
 Read this page. 
 
 It led me to follow the instructions here at Adafruit: https://learn.adafruit.com/neopixels-on-raspberry-pi. 
-Connect your raspi according to those instructions. 
+
+Connect your raspi according to those instructions. I have been using my Pi's with a diode instead of the level converter, and they work well.
+
+# Hardware 
+
+- WS2812 (Neopixel) LED Light Strip or LEDs
+- Raspberry Pi 3 Model B or Raspberry Pi Zero (other Raspberry Pis should work fine but are untested)
+- 5V 2A Power Supply
+- 1N4001 Diode (or equivalent) or a level converter. See https://learn.adafruit.com/neopixels-on-raspberry-pi/wiring
 
 # Connections 
 
@@ -49,20 +50,27 @@ In future versions I will remove the node_modules folder and instruct users to d
 
 Tested working on: 
   1) Raspberry Pi 3 Model B
-  2) Raspberry Pi Zero W
+  2) Raspberry Pi Zero W (some slowness can occurr)
 
 # Raspberry Pi Setup
 
-1) Install NodeJS
-2) Copy this repo to some location on your pi
-3) Modify NUM_LEDS in strip.js to match the number of LEDs you have connected
-    var NUM_LEDS = <YOUR_LEDS_HERE>;
-4) Modify HTTP_PORT in app.js to match the port you want to use to access your Pi
-    var HTTP_PORT = <YOUR_PORT_HERE>;
-5) Run app.js as root user or with sudo priveleges
-    node app.js
-6) Access app.html to control the LED strip from the IP Address of your raspi
-    http://<YOUR_IP_ADDRESS_HERE>:<YOUR_PORT_HERE>/
+1) Install NodeJS.
+2) Copy this repo to some location on your pi.
+3) Modify NUM_LEDS in strip.js to match the number of LEDs you have connected.
+
+    `var NUM_LEDS = <YOUR_LEDS_HERE>;`
+
+4) Modify HTTP_PORT in app.js to match the port you want to use to access your Pi.
+
+    `var HTTP_PORT = <YOUR_PORT_HERE>;`
+
+5) Run app.js as root user or with sudo privileges.
+
+    `node /path/to/me/app.js`
+
+6) Access app.html to control the LED strip from the IP Address of your raspi.
+
+    `http://<YOUR_IP_ADDRESS_HERE>:<YOUR_PORT_HERE>/`
 
 # Questions? 
 
