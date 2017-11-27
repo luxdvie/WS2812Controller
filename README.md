@@ -32,7 +32,7 @@ Connect your raspi according to those instructions. I have been using my Pi's wi
 # Hardware 
 
 - WS2812 (Neopixel) LED Light Strip or LEDs
-- Raspberry Pi 3 Model B or Raspberry Pi Zero (other Raspberry Pis should work fine but are untested)
+- Raspberry Pi 3 Model B, Raspberry Pi Zero, or Raspberry Pi Model B (other Raspberry Pis should work fine but are untested)
 - 5V 2A Power Supply
 - 1N4001 Diode (or equivalent) or a level converter. See https://learn.adafruit.com/neopixels-on-raspberry-pi/wiring
 
@@ -50,7 +50,8 @@ In future versions I will remove the node_modules folder and properly script the
 
 Tested working on: 
   1) Raspberry Pi 3 Model B
-  2) Raspberry Pi Zero W (some slowness can occurr)
+  2) Raspberry Pi Zero W (some slowness can occur)
+  3) Raspberry Pi Model B (some slowness can occur)
 
 # Raspberry Pi Setup
 
