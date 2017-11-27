@@ -50,7 +50,7 @@ Tested working on:
 2) Install express NPM package
 3) Install body-parser NPM package
 4) Install rpi-ws281x-native NPM package
-5) Modify NUM_LEDS in app.js to match the number of LEDs you have connected
+5) Modify NUM_LEDS in strip.js to match the number of LEDs you have connected
 5) Run app.js from source code in Node
 6) Access app.html to control the LED strip from the IP Address of your raspi
 
