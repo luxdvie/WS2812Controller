@@ -14,7 +14,7 @@
 
 
 		/* The port the server will listen on */
-		var HTTP_PORT = 80;
+		var HTTP_PORT = 8080;
 
 		/* Global reference to the LED strip */
 		var strip = require("./strip.js");
