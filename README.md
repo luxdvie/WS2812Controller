@@ -46,7 +46,7 @@ Connect your raspi according to those instructions. I have been using my Pi's wi
 
 I currently have included the node modules directory in the repo. **IMORTANT** This will only work on a Raspberry Pi.
 
-In future versions I will remove the node_modules folder and instruct users to download the (3) required packagaes. 
+In future versions I will remove the node_modules folder and properly script the (3) packagaes. 
 
 Tested working on: 
   1) Raspberry Pi 3 Model B
