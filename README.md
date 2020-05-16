@@ -90,6 +90,45 @@ Tested working on:
 	```
     http://<YOUR_IP_ADDRESS_HERE>:<YOUR_PORT_HERE>/
 	```
+
+# Running on Pi Startup
+
+There are many ways to accomplish this, but the one I went with was this:
+
+1.  Define the command that will run your app.js file. In my case, this was:
+    -  `su pi -c 'sudo node /home/pi/code/github.com/WS2812Controller/app.js'`
+2.  Put this line in the `/etc/rc.local` file
+    -  `sudo nano /etc/rc.local`
+    -  Update the contents to add the command (above) that works for you. Mine looks like this (out of the box Raspbian configuration included):
+		```
+		#!/bin/sh -e
+		#
+		# rc.local
+		#
+		# This script is executed at the end of each multiuser runlevel.
+		# Make sure that the script will "exit 0" on success or any other
+		# value on error.
+		#
+		# In order to enable or disable this script just change the execution
+		# bits.
+		#
+		# By default this script does nothing.
+
+		# Print the IP address
+		_IP=$(hostname -I) || true
+		if [ "$_IP" ]; then
+		printf "My IP address is %s\n" "$_IP"
+		fi
+
+		su pi -c 'sudo node /home/pi/code/github.com/WS2812Controller/app.js'
+
+		exit 0
+		```
+
+# Security Note
+
+**Disclaimer** The `rpi-ws281x-native` package requires root access, so you have to run the `app.js` with `sudo` or as `root`... Do this at your own risk :) I never expose my Pi to the internet, so I'm not as concerned about this, but definitely I would not recommend you ever expose this service to the internet, especially when configured this way!
+
 # Author
 
 Austin Brown [GitHub](https://github.com/luxdvie),  [austinbrown2500@gmail.com](mailto:austinbrown2500@gmail.com)
