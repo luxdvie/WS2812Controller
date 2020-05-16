@@ -6,7 +6,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "rpi-ws281x-native": "^0.8.2"
+    "rpi-ws281x-native": "^0.9.0"
   },
   "devDependencies": {},
   "scripts": {
