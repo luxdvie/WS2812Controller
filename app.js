@@ -129,4 +129,10 @@ var server = app.listen(HTTP_PORT, function () {
 	console.log(" Web Server listening at the location below, or by host name and port. ");
 	console.log(" http://" + localAddress + ":" + HTTP_PORT);
 	console.log("***************************");
+
+	// Run the 'Rainbow' routing on startup
+	var rainbowInstance = GetLibraryInstance("rainbow");
+	if (rainbowInstance) {
+        	rainbowInstance.GoRainbow("", strip);
+	}
 });
