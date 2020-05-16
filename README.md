@@ -26,26 +26,22 @@ It led me to follow the instructions here at Adafruit: https://learn.adafruit.co
 
 Connect your raspi according to those instructions. I have been using my Pi's with a diode instead of the level converter, and they work well.
 
-# Hardware 
+# Hardware
 
 - WS2812 (Neopixel) LED Light Strip or LEDs
 - Raspberry Pi 3 Model B, Raspberry Pi Zero, or Raspberry Pi Model B (other Raspberry Pis should work fine but are untested)
 - 5V 2A Power Supply
 - 1N4001 Diode (or equivalent) or a level converter. See https://learn.adafruit.com/neopixels-on-raspberry-pi/wiring
 
-# Connections 
+# Connections
 
-1) Connect DATA IN of your WS2812 LED strip to physical pin 12 of the Raspberry Pi. (GPIO 18).
-2) Connect GND (Physical pin 6) to the GND lead of your power supply. 
-- Refer to this image for a layout of the raspi pins: https://www.element14.com/community/servlet/JiveServlet/previewBody/73950-102-11-339300/pi3_gpio.png
+1.  Connect DATA IN of your WS2812 LED strip to physical pin 12 of the Raspberry Pi. (GPIO 18).
+2.  Connect GND (Physical pin 6) to the GND lead of your power supply.
+    - Refer to this image for a layout of the raspi pins: https://www.element14.com/community/servlet/JiveServlet/previewBody/73950-102-11-339300/pi3_gpio.png
 
-# 
+# Devices
 
-I currently have included the node modules directory in the repo. **IMORTANT** This will only work on a Raspberry Pi.
-
-In future versions I will remove the node_modules folder and properly script the (3) packagaes. 
-
-Tested working on: 
+Tested working on:
   1) Raspberry Pi 3 Model B
   2) Raspberry Pi Zero W (some slowness can occur)
   3) Raspberry Pi Model B (some slowness can occur)
@@ -53,21 +49,38 @@ Tested working on:
 # Raspberry Pi Setup
 
 1.  Install NodeJS
+    -  [This NodeJS on Raspi tutorial was super helpful for me](https://desertbot.io/blog/nodejs-git-and-pm2-headless-raspberry-pi-install)
 2.  Copy this repo to some location on your pi
-3.  Run `npm install` in the root of this project to install all dependencies
-4.  Modify NUM_LEDS in strip.js to match the number of LEDs you have connected
+    -  Easy option: use git
+       -  `sudo apt install git`
+       -  `git clone https://github.com/luxdvie/WS2812Controller.git`
+ 3.  During node setup, I ran into some permissions issues with the `rpi-ws281x-native` package on my pi zero. [I performed these steps](https://stackoverflow.com/questions/52979927/npm-warn-checkpermissions-missing-write-access-to-usr-local-lib-node-modules):
+       -  add following lines to `~/.bashrc` after installing npm:
+			```
+			npm set prefix ~/.npm
+			PATH="$HOME/.npm/bin:$PATH"
+			PATH="./node_modules/.bin:$PATH"
+			Execute following line after changes:
+			```
+			then run:
+			`source ~/.bashrc`
+4.  Globally install the node-gyp package 
+    -  `npm i -g node-gyp`
+5.  Run `npm install` in the root of this project to install all dependencies
+    -  **Important troubleshooting note** If you run into issues during installation, you may want to try deleting the `package-lock.json` and `node_modules` directory, and trying `npm install` again. Avoid using `sudo` for npm install if you can!
+6.  Modify NUM_LEDS in `strip.js` to match the number of LEDs you have connected
 	```
 	var NUM_LEDS = <YOUR_LEDS_HERE>;
 	```
-4.  Modify HTTP_PORT in app.js to match the port you want to use to access your Pi.
+7.  Modify HTTP_PORT in app.js to match the port you want to use to access your Pi.
 	```
 	var HTTP_PORT = <YOUR_PORT_HERE>;
 	```
-5.  Run app.js as root user or with sudo privileges.
+8.  Run app.js as root user or with sudo privileges.
 	```
     node /path/to/me/app.js
 	```
-6.  Access app.html to control the LED strip from the IP Address of your raspi.
+9.  Access app.html to control the LED strip from the IP Address of your raspi.
 	```
     http://<YOUR_IP_ADDRESS_HERE>:<YOUR_PORT_HERE>/
 	```
