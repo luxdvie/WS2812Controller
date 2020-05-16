@@ -83,7 +83,7 @@ function xmas() {
 		if (XmasIterateOffset > strip.NUM_LEDS) {
 			XmasIterateOffset = 0;
 			for (var d = 0; d < DanceWidth; d++) {
-				DanceArray[d] = RandomXmasColor();
+				DanceArray[d] = common.RandomXmasColor();
 			}
 		}
 
