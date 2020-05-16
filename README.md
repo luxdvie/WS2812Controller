@@ -4,7 +4,9 @@ A **very** basic app to control WS2812 LED strips with a raspberry pi.
 
 This consists of a Node app which serves a simple HTML page to manage the strip and includes libraries to control the strip.
 
-You can use it for WS2812 (NeoPixel) christmas lights, or other simple DIY applications.
+You can use it for WS2812 (NeoPixel) christmas lights, or other simple DIY applications. I used it for a couple applications, including Christmas Tree Lights and an artistic decorative dodecahedron.
+
+![cubeeee](./images/cube.jpg)
 
 # Current Animations
 
@@ -31,7 +33,8 @@ Connect your raspi according to those instructions. I have been using my Pi's wi
 - WS2812 (Neopixel) LED Light Strip or LEDs
 - Raspberry Pi 3 Model B, Raspberry Pi Zero, or Raspberry Pi Model B (other Raspberry Pis should work fine but are untested)
 - 5V 2A Power Supply
-- 1N4001 Diode (or equivalent) or a level converter. See https://learn.adafruit.com/neopixels-on-raspberry-pi/wiring
+- 1N4001 Diode (or equivalent) or a level converter. See https://learn.adafruit.com/neopixels-on-raspberry-pi/raspberry-pi-wiring. I used the diode method and connected it up like this:
+    -  ![pi-wiring](./images/led_strips_raspi_NeoPixel_Diode_bb.jpg)
 
 # Connections
 
@@ -44,6 +47,9 @@ Connect your raspi according to those instructions. I have been using my Pi's wi
 Tested working on:
   1) Raspberry Pi 3 Model B
   2) Raspberry Pi Zero W (some slowness can occur)
+     -  Pinout. I connected PSU ground to PIN6 (GND) and DATA to the LED strip on PIN12 (GPIO18)
+     -  ![pi-zero-pinout](./images/pi-zero-pinout.png)
+     -  **Important** make sure that the power supply's ground is connected to a ground connection on the Pi.
   3) Raspberry Pi Model B (some slowness can occur)
 
 # Raspberry Pi Setup
