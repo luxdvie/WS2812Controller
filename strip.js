@@ -1,13 +1,12 @@
-/*
- *   Put your number of LEDs here.
+/**
+ * Put your number of LED's here
  */
 var NUM_LEDS = 100;
-
 var ws281x = require("rpi-ws281x-native");
 var pixelData = new Uint32Array(NUM_LEDS);
-ws281x.init(NUM_LEDS);
-
 var Lights = [];
+
+ws281x.init(NUM_LEDS);
 
 function strip() {
 	this.NUM_LEDS = NUM_LEDS;
@@ -17,23 +16,23 @@ function strip() {
 		ws281x.reset();
 	};
 
-	/*
-	 *   Clear all LEDs back to 0x00000 and render
+	/**
+	 * Clear all LED's back to 0x00000 and render
 	 */
 	this.Stop = function () {
 		strip.Clear();
 		CurrentMode = MODES.CLEAR;
 	};
 
-	/*
-	 *   Assign the brightness of the whole strip.
+	/**
+	 * Assign the brightness of the whole strip.
 	 */
 	this.SetBrightness = function (brightness) {
 		ws281x.setBrightness(brightness);
 	};
 
-	/*
-	 *   Set a single color for all LEDs
+	/**
+	 * Set a single color for all LED's
 	 */
 	this.SetStripColor = function (color) {
 		for (var i = 0; i < NUM_LEDS; i++) {
@@ -42,6 +41,9 @@ function strip() {
 		this.Render();
 	};
 
+	/**
+	 * Render the current state of the LED strip
+	 */
 	this.Render = function () {
 		var tmp = [];
 		for (var i = 0; i < NUM_LEDS; i++) {

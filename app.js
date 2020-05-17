@@ -29,6 +29,7 @@ var xmas = require("./animations/xmas.js");
 var fade = require("./animations/fade.js");
 var rainbow = require("./animations/rainbow.js");
 var control = require("./animations/control.js");
+var dance = require("./animations/dance.js");
 
 // Find the first local, ipv4 address
 // This is a 'best guess' that the web server can be accessed
@@ -78,9 +79,12 @@ app.post("/AnimationRequest", function (request, response) {
 
 	var args = request.body.hasOwnProperty("args") ? request.body.args : "";
 
-	var rsp = instance[method](args, strip);
-
-	response.send(rsp);
+	if (typeof instance[method] === "function") {
+		var rsp = instance[method](args, strip);
+		response.send(rsp);
+	} else {
+		response.send("Function not found");
+	}
 });
 
 /**
@@ -113,6 +117,9 @@ function GetLibraryInstance(key) {
 			break;
 		case "control":
 			lib = control;
+			break;
+		case "dance":
+			lib = dance;
 			break;
 	}
 

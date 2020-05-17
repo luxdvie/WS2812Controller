@@ -1,11 +1,6 @@
 /*******************************
     Dance
 *******************************/
-app.get("/dance", function (req, res) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.send("Switching to dance.");
-	if ($app.Mode != MODES.DANCE) GoDance();
-});
 
 app.post("/dancespeed", function (request, response) {
 	res.header("Access-Control-Allow-Origin", "*");
@@ -30,73 +25,6 @@ app.get("/twinkle", function (req, res) {
 	if ($app.Mode != MODES.TWINKLE) GoTwinkle();
 });
 
-/*******************************
-    Dance
-*******************************/
-
-function GoDance() {
-	$app.Mode = MODES.DANCE;
-	DanceTick();
-}
-
-var DanceSpeed = 10;
-function DanceTick() {
-	// colorWipe( 0xff3b00 , DanceSpeed); // Red
-	// theaterChase( 0xf8f9de , DanceSpeed); // White
-	// colorWipe( 0x0043ff , DanceSpeed); // Blue
-	// colorWipe( 0x1eff0a , DanceSpeed); // Green
-	// theaterChase( 0xff3b00 , DanceSpeed); // Red
-	// theaterChase( 0x0043ff , DanceSpeed); // Blue\
-
-	rainbowCycle(0, rainbowCycle);
-
-	setTimeout(function () {
-		if (IsDancing()) {
-			// DanceTick();
-		}
-	}, 10);
-}
-
-var rainbowCycleI,
-	rainbowCycleJ = 0;
-function rainbowCycle(wait, cb) {
-	if (rainbowCycleJ < 256 * 5) {
-		if (rainbowCycleI < NUM_LEDS) {
-			$app.Lights[rainbowCycleI] = Wheel(
-				((rainbowCycleI * 256) / NUM_LEDS + rainbowCycleJ) & 255
-			);
-			rainbowCycleI++;
-			setTimeout(function () {
-				if (IsDancing()) {
-					rainbowCycle(wait, cb);
-				}
-			}, wait);
-			StripRender();
-		} else {
-			StripRender();
-			rainbowCycleI = 0;
-			rainbowCycleJ++;
-
-			setTimeout(function () {
-				if (IsDancing()) {
-					rainbowCycle(wait, cb);
-				}
-			}, wait);
-		}
-	} else {
-		rainbowCycleI = 0;
-		rainbowCycleJ = 0;
-		if (cb) cb(wait, cb);
-	}
-}
-
-function IsDancing() {
-	return $app.Mode == MODES.DANCE;
-}
-
-/*******************************
-    Twinkle
-*******************************/
 var WasTwinkling = false;
 var TwinkleSpeed = 500;
 function GoTwinkle() {

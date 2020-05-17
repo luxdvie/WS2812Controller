@@ -25,7 +25,7 @@ function common() {
 	};
 
 	// rainbow-colors, taken from http://goo.gl/Cs3H0v
-	this.colorwheel = function (pos) {
+	this.colorWheel = function (pos) {
 		pos = 255 - pos;
 		if (pos < 85) {
 			return this.rgb2Int(255 - pos * 3, 0, pos * 3);
