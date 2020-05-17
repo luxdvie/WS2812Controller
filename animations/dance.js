@@ -2,9 +2,13 @@ var common = require("./common.js");
 
 function dance() {
 	var name = "dance.js";
-	var DanceSpeed = 10;
-	var rainbowCycleI,
-		rainbowCycleJ = 0;
+
+	// Keep this number low for a cool, fast dancing effect
+	// This might tank your pi's performance :)
+	var DanceSpeed = 1;
+	var ledIndex = 0;
+	var iterationIndex = 0;
+	var maxIterations = 256 * 5;
 
 	this.GoDance = function (args, strip) {
 		strip.Mode = name + "dance";
@@ -15,22 +19,20 @@ function dance() {
 	this.DanceTick = function (args, strip) {
 		var _this = this;
 
-		if (rainbowCycleJ < 256 * 5) {
-			if (rainbowCycleI < strip.NUM_LEDS) {
-				strip.Lights[rainbowCycleI] = common.colorWheel(
-					((rainbowCycleI * 256) / strip.NUM_LEDS + rainbowCycleJ) & 255
+		if (iterationIndex < maxIterations) {
+			if (ledIndex < strip.NUM_LEDS) {
+				strip.Lights[ledIndex] = common.colorWheel(
+					((ledIndex * 256) / strip.NUM_LEDS + iterationIndex) & 255
 				);
 
-				rainbowCycleI++;
-				strip.Render();
+				ledIndex++;
 			} else {
-				strip.Render();
-				rainbowCycleI = 0;
-				rainbowCycleJ++;
+				ledIndex = 0;
+				iterationIndex++;
 			}
 		} else {
-			rainbowCycleI = 0;
-			rainbowCycleJ = 0;
+			ledIndex = 0;
+			iterationIndex = 0;
 		}
 
 		strip.Render();
