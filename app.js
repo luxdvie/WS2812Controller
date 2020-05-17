@@ -30,6 +30,7 @@ var fade = require("./animations/fade.js");
 var rainbow = require("./animations/rainbow.js");
 var control = require("./animations/control.js");
 var dance = require("./animations/dance.js");
+var twinkle = require("./animations/twinkle.js");
 
 // Find the first local, ipv4 address
 // This is a 'best guess' that the web server can be accessed
@@ -120,6 +121,9 @@ function GetLibraryInstance(key) {
 			break;
 		case "dance":
 			lib = dance;
+			break;
+		case "twinkle":
+			lib = twinkle;
 			break;
 	}
 
