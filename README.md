@@ -14,9 +14,13 @@ You can use it for WS2812 (NeoPixel) christmas lights, or other simple DIY appli
      - Cycle through all colors and pulse through strip.
 2.  Fade 2 Colors
      - Choose 2 colors and fade the strip between them.
-3.  Christmas Mode 1
+3. Dance
+   -  Each LED is rapidly moving through the color wheel, giving a 'disco' / 'dance' effect.
+5.  Starry Night
+    -  Twinkling, white LED effects to simulate stars! :star:
+6.  Christmas Tree
      - Randomly cycle R / G / B / W through the strip.
-4. Christmas Mode 2
+7. Christmas Iterate
      - Iterate a segment of R / G / B / W LEDs through the strip from top to bottom and bottom to top
 
 # Important Reading
