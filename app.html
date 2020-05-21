@@ -101,11 +101,11 @@
             <button class="btn btn-success" type="button" onclick="Start2Fade();"> Apply </button>
           </div> 
           <br><br> Fade Speed: <input type="text" id="fadespeed" name="rainbowspeed" data-provide="slider" onchange="UpdateFadeSpeed();" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="10" data-slider-tooltip="hide" >
-
       </div> <!-- ./tab-pane -->
 
       <div class="tab-pane" id="5a">
-            <button class="btn btn-success" type="button" onclick="StartDancing();"> Start Dancing </button>
+			<button class="btn btn-success" type="button" onclick="StartDancing();"> Start Dancing </button>
+			<br><br> Dance Brightness: <input type="text" id="dancebrightness" name="dancebrightness" data-provide="slider" onchange="UpdateDanceBrightness();" data-slider-min="1" data-slider-max="255" data-slider-step="1" data-slider-value="255" data-slider-tooltip="hide" >
       </div> <!-- ./tab-pane -->
 
       <div class="tab-pane" id="xmas1">
@@ -194,12 +194,16 @@
 		AnimationRequest("dance", "GoDance", {});
       }
 
-      function StartTwinkling() {
-        AnimationRequest("twinkle", "GoTwinkle", {});
+      function UpdateDanceBrightness() {
+        var args = {
+			Brightness: $("#dancebrightness").val()
+		};
+
+        AnimationRequest("dance", "SetDanceBrightness", args);
       }
 
-      function UpdateDanceSpeed() {
-       $Strip.POST( "dancespeed", { speed: $("#dancespeed").val() } ); 
+      function StartTwinkling() {
+        AnimationRequest("twinkle", "GoTwinkle", {});
       }
 
       function fade() {

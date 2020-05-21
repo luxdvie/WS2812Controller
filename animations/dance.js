@@ -9,11 +9,29 @@ function dance() {
 	var ledIndex = 0;
 	var iterationIndex = 0;
 	var maxIterations = 256 * 5;
+	var danceBrightness = 255;
 
 	this.GoDance = function (args, strip) {
 		strip.Mode = name + "dance";
 		console.log("Going dance mode.");
 		this.DanceTick(args, strip);
+	};
+
+	/**
+	 * Updates the brightness of the strip while in dance mode
+	 */
+	this.SetDanceBrightness = function (args, strip) {
+		var brightness = parseInt(args.Brightness);
+		if (typeof brightness !== "number") {
+			brightness = 255;
+		}
+
+		// Force to be between 1 and 255
+		brightness = Math.max(brightness, 1);
+		brightness = Math.min(brightness, 255);
+
+		danceBrightness = brightness;
+		strip.SetBrightness(danceBrightness);
 	};
 
 	this.DanceTick = function (args, strip) {
@@ -40,6 +58,10 @@ function dance() {
 		setTimeout(function () {
 			if (strip.Mode == name + "dance") {
 				_this.DanceTick(args, strip);
+			} else {
+				// Reset brightness back to default/max
+				danceBrightness = 255;
+				strip.SetBrightness(danceBrightness);
 			}
 		}, DanceSpeed);
 	};
