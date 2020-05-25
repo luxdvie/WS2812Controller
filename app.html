@@ -40,7 +40,7 @@
 				<li class=""><a data-toggle="tab" href="#6a">Starry Night</a></li>
 				<li class=""><a  data-toggle="tab" href="#xmas1">Christmas Tree</a></li>
 				<li class=""><a  data-toggle="tab" href="#xmas2">Christmas Iterate</a></li>
-				<li class=""><a data-toggle="tab" href="#3a">Stop</a></li>
+				<li class=""><a data-toggle="tab" href="#3a">Admin</a></li>
 			</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
@@ -70,7 +70,18 @@
 			<div class="clearfix">&nbsp;</div>
 			<div class="row">
 			<div class="col-xs-12">
-				<button class="btn btn-danger" onclick="Stop();"> Stop Strip </button>
+				<button class="btn btn-primary" onclick="Stop();"> Stop Strip </button>
+				<label>This option will turn off all LED's that are connected.</label>
+			</div>
+			<div class="clearfix">&nbsp;</div>
+			<div class="col-xs-12">
+				<button class="btn btn-warning" onclick="Reboot();"> Reboot Raspberry Pi </button>
+				<label>Warning!! This option will reboot the device.</label>
+			</div>
+			<div class="clearfix">&nbsp;</div>
+			<div class="col-xs-12">
+				<button class="btn btn-danger" onclick="PowerOff();"> Power off Raspberry Pi </button>
+				<label>Warning!! This option will turn off the device.</label>
 			</div>
 			</div>
 		</div> <!-- ./tab-pane -->

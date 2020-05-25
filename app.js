@@ -97,6 +97,23 @@ app.get("/", function (req, res) {
 });
 
 /*****************
+	Admin
+*****************/
+
+app.get("/admin/reboot", function (req, res) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.send("Issuing shutdown command.");
+	require('child_process').exec('sudo reboot', function (msg) { console.log("Issuing reboot command.") });
+});
+
+app.get("/admin/poweroff", function (req, res) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.send("Issuing shutdown command.");
+	require('child_process').exec('sudo poweroff', function (msg) { console.log("Issuing shutdown command.") });
+});
+
+
+/*****************
 	Common
 *****************/
 

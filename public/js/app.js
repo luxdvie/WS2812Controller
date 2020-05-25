@@ -1,5 +1,6 @@
 var CurrentArray = [];
 var CurrentArrayObjects = [];
+var $Strip = {};
 
 /*****************
 	Event Listeners
@@ -17,6 +18,18 @@ $(document).on("click", ".navbar-collapse.in", function (e) {
 
 function Stop() {
 	AnimationRequest("control", "Stop", null);
+}
+
+function Reboot() {
+	if (confirm("Are you sure you wish to reboot the device?")) {
+		$Strip.BasicGET("admin/reboot");
+	}
+}
+
+function PowerOff() {
+	if (confirm("Are you sure you wish to turn off the device?")) {
+		$Strip.BasicGET("admin/poweroff");
+	}
 }
 
 /*****************
@@ -102,8 +115,6 @@ function fade() {
 function spin() {
 	$Strip.BasicGET("spin");
 }
-
-var $Strip = {} || $Strip;
 
 $Strip = {
 	ColorPicker: "",
