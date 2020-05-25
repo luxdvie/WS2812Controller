@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> WS2812 Control </title>
+    <title>WS2812</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="icon" type="image/png" href="images/lights-favicon-32x32.ico">
     <style>
         @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
         @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
@@ -12,275 +13,115 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="https://code.jquery.com/ui/1.12.1/themes/excite-bike/jquery-ui.css" rel="stylesheet">
-    <link href="slider/bootstrap-slider.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" ></script>
-
-    <script type="text/javascript" src="js/color.js"></script>
-    <script type="text/javascript" src="slider/js/bootstrap-slider.min.js"></script>
+	<link href="slider/bootstrap-slider.min.css" rel="stylesheet">
 </head>
-
 <body>
-<div class="container">
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">LightBulb</a>
-        </div>
+	<div class="container">
+		<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">WS2812 Control</a>
+			</div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><a  data-toggle="tab" href="#1a">Home</a></li>
-            <li class=""><a  data-toggle="tab" href="#2a">Rainbow</a></li>
-            <li class=""><a data-toggle="tab" href="#4a">Fade 2 Colors</a></li>
-            <li class=""><a data-toggle="tab" href="#5a">Dance</a></li>
-            <li class=""><a data-toggle="tab" href="#6a">Starry Night</a></li>
-            <li class=""><a  data-toggle="tab" href="#xmas1">Christmas Tree</a></li>
-            <li class=""><a  data-toggle="tab" href="#xmas2">Christmas Iterate</a></li>
-            <li class=""><a data-toggle="tab" href="#3a">Stop</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a  data-toggle="tab" href="#1a">Home</a></li>
+				<li class=""><a  data-toggle="tab" href="#2a">Rainbow</a></li>
+				<li class=""><a data-toggle="tab" href="#4a">Fade 2 Colors</a></li>
+				<li class=""><a data-toggle="tab" href="#5a">Dance</a></li>
+				<li class=""><a data-toggle="tab" href="#6a">Starry Night</a></li>
+				<li class=""><a  data-toggle="tab" href="#xmas1">Christmas Tree</a></li>
+				<li class=""><a  data-toggle="tab" href="#xmas2">Christmas Iterate</a></li>
+				<li class=""><a data-toggle="tab" href="#3a">Stop</a></li>
+			</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+		</nav>
 
-    <div class="tab-content clearfix">
+		<div class="tab-content clearfix">
 
-      <div class="tab-pane active" id="1a">
-        <h3>Welcome!</h3>
-        <p> Choose an option in the menu above. </p>
-      </div> <!-- ./tab-pane -->
+		<div class="tab-pane active" id="1a">
+			<h3>Welcome!</h3>
+			<p> Choose an option in the menu above. </p>
+		</div> <!-- ./tab-pane -->
 
-      <div class="tab-pane" id="2a">
-        <div class="clearfix">&nbsp;</div>
-        <div class="row"> 
-          <div class="col-xs-12">
-            <button class="btn btn-danger" onclick="StartRainbow();"> Start Rainbow </button>
+		<div class="tab-pane" id="2a">
+			<div class="clearfix">&nbsp;</div>
+			<div class="row">
+			<div class="col-xs-12">
+				<button class="btn btn-danger" onclick="StartRainbow();"> Start Rainbow </button>
 
-            <div class="col-xs-12">
-              <br><br> Speed <input type="text" id="rainbowspeed" name="rainbowspeed" data-provide="slider" onchange="UpdateRainbowSpeed();" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="10" data-slider-tooltip="hide" >
-            </div>
-          </div>
-        </div>
-      </div> <!-- ./tab-pane -->
+				<div class="col-xs-12">
+				<br><br> Speed <input type="text" id="rainbowspeed" name="rainbowspeed" data-provide="slider" onchange="UpdateRainbowSpeed();" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="10" data-slider-tooltip="hide" >
+				</div>
+			</div>
+			</div>
+		</div> <!-- ./tab-pane -->
 
-      <div class="tab-pane" id="3a">
-        <div class="clearfix">&nbsp;</div>
-        <div class="row"> 
-          <div class="col-xs-12">
-            <button class="btn btn-danger" onclick="Stop();"> Stop Strip </button>
-          </div>
-        </div>
-      </div> <!-- ./tab-pane -->
+		<div class="tab-pane" id="3a">
+			<div class="clearfix">&nbsp;</div>
+			<div class="row">
+			<div class="col-xs-12">
+				<button class="btn btn-danger" onclick="Stop();"> Stop Strip </button>
+			</div>
+			</div>
+		</div> <!-- ./tab-pane -->
 
-      <div class="tab-pane" id="4a">
-          <p> Use this mode to fade the strip between two colors </p>
-          <button
-              class="jscolor {valueElement:Fade2Colors1,value:'66ccff'} pull"
-              style="border:2px solid black">
-              Pick Color 1
-          </button>
-          <input style="display:none;" id="Fade2Colors1">
-          <input style="display:none;" id="Fade2Colors2">
-          <button
-              class="jscolor {valueElement:Fade2Colors2,value:'66ccff'} push"
-              style="border:2px solid black" onchange='console.log("here");'>
-              Pick Color 2
-          </button>
-          <br><br>
-          <div style="width:100%;text-align:center;">
-            <button class="btn btn-success" type="button" onclick="Start2Fade();"> Apply </button>
-          </div> 
-          <br><br> Fade Speed: <input type="text" id="fadespeed" name="rainbowspeed" data-provide="slider" onchange="UpdateFadeSpeed();" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="10" data-slider-tooltip="hide" >
-      </div> <!-- ./tab-pane -->
+		<div class="tab-pane" id="4a">
+			<p> Use this mode to fade the strip between two colors </p>
+			<button
+				class="jscolor {valueElement:Fade2Colors1,value:'66ccff'} pull"
+				style="border:2px solid black">
+				Pick Color 1
+			</button>
+			<input style="display:none;" id="Fade2Colors1">
+			<input style="display:none;" id="Fade2Colors2">
+			<button
+				class="jscolor {valueElement:Fade2Colors2,value:'66ccff'} push"
+				style="border:2px solid black" onchange='console.log("here");'>
+				Pick Color 2
+			</button>
+			<br><br>
+			<div style="width:100%;text-align:center;">
+				<button class="btn btn-success" type="button" onclick="Start2Fade();"> Apply </button>
+			</div> 
+			<br><br> Fade Speed: <input type="text" id="fadespeed" name="rainbowspeed" data-provide="slider" onchange="UpdateFadeSpeed();" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="10" data-slider-tooltip="hide" >
+		</div> <!-- ./tab-pane -->
 
-      <div class="tab-pane" id="5a">
-			<button class="btn btn-success" type="button" onclick="StartDancing();"> Start Dancing </button>
-			<br><br> Dance Brightness: <input type="text" id="dancebrightness" name="dancebrightness" data-provide="slider" onchange="UpdateDanceBrightness();" data-slider-min="1" data-slider-max="255" data-slider-step="1" data-slider-value="255" data-slider-tooltip="hide" >
-      </div> <!-- ./tab-pane -->
+		<div class="tab-pane" id="5a">
+				<button class="btn btn-success" type="button" onclick="StartDancing();"> Start Dancing </button>
+				<br><br> Dance Brightness: <input type="text" id="dancebrightness" name="dancebrightness" data-provide="slider" onchange="UpdateDanceBrightness();" data-slider-min="1" data-slider-max="255" data-slider-step="1" data-slider-value="255" data-slider-tooltip="hide" >
+		</div> <!-- ./tab-pane -->
 
-      <div class="tab-pane" id="xmas1">
-          <button class="btn btn-success" type="button" onclick="StartXmas1();"> Start Christmas Mode 1 </button>
-      </div> <!-- ./tab-pane -->
+		<div class="tab-pane" id="xmas1">
+			<button class="btn btn-success" type="button" onclick="StartXmas1();"> Start Christmas Mode 1 </button>
+		</div> <!-- ./tab-pane -->
 
-      <div class="tab-pane" id="xmas2">
-          <button class="btn btn-success" type="button" onclick="StartXmas2();"> Start Christmas Iterate </button>
-      </div> <!-- ./tab-pane -->
+		<div class="tab-pane" id="xmas2">
+			<button class="btn btn-success" type="button" onclick="StartXmas2();"> Start Christmas Iterate </button>
+		</div> <!-- ./tab-pane -->
 
-      <div class="tab-pane" id="6a">
-            <button class="btn btn-success" type="button" onclick="StartTwinkling();"> Start Starry Night </button>
-      </div> <!-- ./tab-pane -->
+		<div class="tab-pane" id="6a">
+				<button class="btn btn-success" type="button" onclick="StartTwinkling();"> Start Starry Night </button>
+		</div> <!-- ./tab-pane -->
 
-    </div> <!-- ./tab-content -->
+		</div> <!-- ./tab-content -->
 
-</div> <!-- /.container -->
-
-  <script>
-
-    /*******************************
-      control
-    *******************************/
-      function Stop() {
-        AnimationRequest("control", "Stop", null);
-      }
-
-    /*******************************
-      xmas
-    *******************************/
-      function StartXmas1() {
-        AnimationRequest("xmas", "GoXmas1", null);
-      }
-      function StartXmas2() {
-          AnimationRequest("xmas", "GoXmasIterate", null);
-      }
-
-    /*******************************
-      fade
-    *******************************/
-      function Start2Fade() {
-        var args = {
-          Color1: $("#Fade2Colors1").val(),
-          Color2: $("#Fade2Colors2").val()
-        };
-        AnimationRequest("fade", "GoFade2", args);
-      }
-      function UpdateFadeSpeed() {
-        var args = {
-          speed: $("#fadespeed").val()
-        };
-        AnimationRequest("fade", "FadeSpeed", args);
-      }
-
-
-    /*******************************
-      rainbow
-    *******************************/
-      function StartRainbow() {
-        AnimationRequest("rainbow", "GoRainbow", null);
-      }
-      function UpdateRainbowSpeed() {
-        var args = {
-          speed: $("#rainbowspeed").val()
-        };
-        AnimationRequest("rainbow", "RainbowSpeed", args);
-      }
-
-    /*******************************
-      common
-    *******************************/
-      function AnimationRequest(lib, method, args) {
-        $Strip.POST("AnimationRequest", { lib: lib, method: method, args: args });
-      }
-
-      $(document).on('click','.navbar-collapse.in',function(e) {
-        if( $(e.target).is('a') ) {
-            $(this).collapse('hide');
-        }
-      });
-
-    /*******************************
-      deprecated
-    *******************************/
-      function StartDancing() {
-		AnimationRequest("dance", "GoDance", {});
-      }
-
-      function UpdateDanceBrightness() {
-        var args = {
-			Brightness: $("#dancebrightness").val()
-		};
-
-        AnimationRequest("dance", "SetDanceBrightness", args);
-      }
-
-      function StartTwinkling() {
-        AnimationRequest("twinkle", "GoTwinkle", {});
-      }
-
-      function fade() {
-        $Strip.BasicGET("fade");
-      }
-
-      function spin() {
-        $Strip.BasicGET("spin");
-      }
-
-      var $Strip = {} || $Strip;
-
-      $Strip = {
-        ColorPicker: "",
-        Interval: "",
-        CanSubmitOverride: true,
-        CanSubmit: true,
-
-        SetColorGroup: function(hex, array) {
-          $(".colorpicker_hex input").val("#0066ff").trigger("change");
-        },
-
-        SetColor: function(hex, index) {
-          if ($Strip.CanSubmit || $Strip.CanSubmitOverride) {
-            $Strip.POST("color", { color: hex, index: index });
-            $Strip.CanSubmit = false;
-          }
-        },
-        Start: function() {
-          $Strip.BasicGET("pulse");
-        },
-        Stop: function() {
-          $Strip.BasicGET("istop");
-        },
-        POST: function(action,data) {
-          $.ajax({
-              url: '/'+action,
-              type: 'POST',
-              data: data,
-            })
-            .done(function() {
-            })
-            .fail(function() {
-            })
-            .always(function() {
-              $Strip.CanSubmit = true;
-            });
-        },
-        BasicGET: function(action) {
-            $.ajax({
-              url: '/'+action,
-              type: 'GET',
-              data: {},
-            })
-            .done(function() {
-            })
-            .fail(function() {
-            })
-            .always(function() {
-            });
-        }
-      };
-
-      function prepareColors() {
-        $Strip.ColorPicker = $("[data-role='colorpicker']").each(function(){
-          var index = $(this).data("index");
-          CurrentArrayObjects[index] = $(this).ColorPicker({
-            flat: true,
-            onChange: function (hsb, hex, rgb) {
-              $Strip.SetColor(hex, index);
-            }
-          });
-        });
-      }
-
-      var CurrentArray = [];
-      var CurrentArrayObjects = [];
-  </script>
+	</div> <!-- /.container -->
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" ></script>
+	<script type="text/javascript" src="js/color.js"></script>
+	<script type="text/javascript" src="slider/js/bootstrap-slider.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
