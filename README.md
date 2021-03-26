@@ -70,7 +70,6 @@ Tested working on:
 			npm set prefix ~/.npm
 			PATH="$HOME/.npm/bin:$PATH"
 			PATH="./node_modules/.bin:$PATH"
-			Execute following line after changes:
 			```
 			then run:
 			`source ~/.bashrc`
