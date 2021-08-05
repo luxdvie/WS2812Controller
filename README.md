@@ -1,6 +1,6 @@
 # WS2812 LED Strip Animations
 
-A **very** basic app to control WS2812 LED strips with a raspberry pi.
+A **very** basic app to control WS2812 LED strips with a Raspberry Pi.
 
 This consists of a Node app which serves a simple HTML page to manage the strip and includes libraries to control the strip.
 
@@ -10,25 +10,18 @@ You can use it for WS2812 (NeoPixel) christmas lights, or other simple DIY appli
 
 # Current Animations
 
-1.  Rainbow
-     - Cycle through all colors and pulse through strip.
-2.  Fade 2 Colors
-     - Choose 2 colors and fade the strip between them.
-3. Dance
-   -  Each LED is rapidly moving through the color wheel, giving a 'disco' / 'dance' effect.
-5.  Starry Night
-    -  Twinkling, white LED effects to simulate stars! :star:
-6.  Christmas Tree
-     - Randomly cycle R / G / B / W through the strip.
-7. Christmas Iterate
-     - Iterate a segment of R / G / B / W LEDs through the strip from top to bottom and bottom to top
+1. Rainbow - Cycle through all colors and pulse through strip.
+2. Fade 2 Colors - Choose 2 colors and fade the strip between them.
+3. Dance -  Each LED is rapidly moving through the color wheel, giving a 'disco' / 'dance' effect.
+4. Starry Night -  Twinkling, white LED effects to simulate stars! :star:
+5. Christmas Tree - Randomly cycle R / G / B / W through the strip.
+6. Christmas Iterate - Iterate a segment of R / G / B / W LEDs through the strip from top to bottom and bottom to top
 
 # Important Reading
 
-I found this NPM package : https://www.npmjs.com/package/rpi-ws281x-native
-Read this page.
+I found [the great rpi-ws281x-native NPM package](https://www.npmjs.com/package/rpi-ws281x-native) which alllows the Raspberry Pi to communicate with WS2812x strips. You should check it out 😄
 
-It led me to follow the instructions here at Adafruit: https://learn.adafruit.com/neopixels-on-raspberry-pi.
+It led me to follow [these easy instructions on Adafruit](https://learn.adafruit.com/neopixels-on-raspberry-pi).
 
 Connect your raspi according to those instructions. I have been using my Pi's with a diode instead of the level converter, and they work well.
 
@@ -134,4 +127,6 @@ There are many ways to accomplish this, but the one I went with was this:
 
 # Author
 
-Austin Brown [GitHub](https://github.com/luxdvie),  [austinbrown2500@gmail.com](mailto:austinbrown2500@gmail.com)
+Austin Brown \
+[GitHub](https://github.com/luxdvie) \
+[austinbrown2500@gmail.com](mailto:austinbrown2500@gmail.com)
