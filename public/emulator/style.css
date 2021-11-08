@@ -1,0 +1,101 @@
+.container {
+	border: 1px solid #000;
+	background: #bcbfc4;
+	height: 42px;
+	float: left;
+}
+
+.container > div {
+	float: left;
+}
+
+.led {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin: 5px;
+    animation: pulse 1s infinite;
+    box-shadow: 0px 0px 1px 2px #8f8f8f;
+}
+/*
+.led::before {
+	content: "";
+	display: block;
+	background: white;
+} */
+
+.red {
+	background: red;
+}
+
+.green {
+	background: green;
+}
+
+.blue {
+	background: blue;
+}
+
+@keyframes pulse {
+	0% {
+		background: red;
+	}
+	25% {
+		background: blue;
+	}
+	50% {
+		background: green;
+	}
+	75% {
+		background: pink;
+	}
+	100% {
+		background: yellow;
+	}
+}
+
+.conductor {
+	width: 64px;
+	height: 42px;
+	position: relative;
+	box-sizing: border-box;
+	padding-top: 7px;
+}
+
+.conductor::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 50%;
+	height: 100%;
+	width: 1px;
+	background: black;
+}
+
+.conductor .pill {
+	border-radius: 20px;
+	background: #ba7952;
+	width: 24px;
+	height: 7px;
+	margin-bottom: 3px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.conductor .pill:nth-child(1)::after {
+    content: "+5v D0 GND";
+    transform: rotate(90deg);
+    position: absolute;
+    right: -6px;
+    font-size: 7px;
+    top: 17px;
+}
+
+.conductor .pill:nth-child(1)::before {
+    content: "+5v D0 GND";
+    transform: rotate(90deg);
+    position: absolute;
+    left: -6px;
+    font-size: 7px;
+    top: 17px;
+}
