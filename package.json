@@ -4,8 +4,8 @@
   "description": "WS2812 LED Controller (simple)",
   "main": "app.js",
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
     "rpi-ws281x-native": "^0.9.0"
   },
   "devDependencies": {},
